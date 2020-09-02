@@ -7,6 +7,39 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.container {
+  align-content: center;
+  background-color: aqua;
+}
+
+.grid{
+  height: 450px;
+  width: 450px;
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  border: 2px solid black;
+}
+.square {
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputNumber {
+  width: 1ch;
+  font-size: 1.8em;
+  background-color: aqua;
+  border: 0px;
+}
+
+.bad {
+  background-color: red;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
