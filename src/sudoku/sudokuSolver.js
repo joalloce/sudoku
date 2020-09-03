@@ -3,7 +3,14 @@
 const SIZE = 9;
 
 export default class SudokuSolver {
-  constructor(board, type) {
+  static TYPES = {
+    NORMAL: 1,
+    KING: 2,
+    KNIGHT: 3,
+    MIRACLE: 4,
+  };
+
+  constructor() {
     this.board = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -15,11 +22,18 @@ export default class SudokuSolver {
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ];
+    this.type = SudokuSolver.TYPES.NORMAL;
+  }
+
+  setBoard(board) {
     for (let i = 0; i < SIZE; ++i) {
       for (let j = 0; j < SIZE; ++j) {
         this.board[i][j] = board[i][j];
       }
     }
+  }
+
+  setType(type) {
     this.type = type;
   }
 
@@ -54,33 +68,98 @@ export default class SudokuSolver {
     return false;
   }
 
-  isInItsKnight(row,col,number) {
-    let x = [-2,-1,1,2,2,1,-1,-2];
-    let y = [1,2,2,1,-1,-2,-2,-1];
-    for(let k = 0; k<8;++k) {
-      let i = row+x[k];
-      let j = col+y[k];
-      if(i>=0 && j>=0 && i<SIZE && j<SIZE && this.board[i][j] === number) {
+  isInItsKnight(row, col, number) {
+    let x = [-2, -1, 1, 2, 2, 1, -1, -2];
+    let y = [1, 2, 2, 1, -1, -2, -2, -1];
+    for (let k = 0; k < 8; ++k) {
+      let i = row + x[k];
+      let j = col + y[k];
+      if (
+        i >= 0 &&
+        j >= 0 &&
+        i < SIZE &&
+        j < SIZE &&
+        this.board[i][j] === number
+      ) {
         return true;
       }
     }
     return false;
   }
 
-  isInItsKing(row,col,number) {
-    //to do
+  isInItsKing(row, col, number) {
+    let x = [-1, -1, 1, 1];
+    let y = [-1, 1, -1, 1];
+    for (let k = 0; k < 4; ++k) {
+      let i = row + x[k];
+      let j = col + y[k];
+      if (
+        i >= 0 &&
+        j >= 0 &&
+        i < SIZE &&
+        j < SIZE &&
+        this.board[i][j] === number
+      ) {
+        return true;
+      }
+    }
+    return false;
   }
 
-  isAConsecutiveOrhtogonallyAdjacent(row,col,number) {
-    //to do
+  isAConsecutiveOrhtogonallyAdjacent(row, col, number) {
+    let x = [-1, 0, 0, 1];
+    let y = [0, 1, -1, 0];
+    for (let k = 0; k < 4; ++k) {
+      let i = row + x[k];
+      let j = col + y[k];
+      let q = number - 1;
+      let w = number + 1;
+      if (i >= 0 && j >= 0 && i < SIZE && j < SIZE) {
+        if (q >= 1 && q <= SIZE && this.board[i][j] === q) {
+          return true;
+        }
+        if (w >= 1 && w <= SIZE && this.board[i][j] === w) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   isOkToPlace(row, col, number) {
-    return (
-      !this.isInItsRow(row, number) &&
-      !this.isInItsCol(col, number) &&
-      !this.isInItsBox(row, col, number)
-    );
+    switch (this.type) {
+      case SudokuSolver.TYPES.NORMAL:
+        return (
+          !this.isInItsRow(row, number) &&
+          !this.isInItsCol(col, number) &&
+          !this.isInItsBox(row, col, number)
+        );
+      case SudokuSolver.TYPES.KING:
+        return (
+          !this.isInItsRow(row, number) &&
+          !this.isInItsCol(col, number) &&
+          !this.isInItsBox(row, col, number) &&
+          !this.isInItsKing(row, col, number)
+        );
+      case SudokuSolver.TYPES.KNIGHT:
+        return (
+          !this.isInItsRow(row, number) &&
+          !this.isInItsCol(col, number) &&
+          !this.isInItsBox(row, col, number) &&
+          !this.isInItsKnight(row, col, number)
+        );
+      case SudokuSolver.TYPES.MIRACLE:
+        return (
+          !this.isInItsRow(row, number) &&
+          !this.isInItsCol(col, number) &&
+          !this.isInItsBox(row, col, number) &&
+          !this.isInItsKnight(row, col, number) &&
+          !this.isInItsKing(row, col, number) &&
+          !this.isAConsecutiveOrhtogonallyAdjacent(row, col, number)
+        );
+      default:
+        return false;
+    }
   }
 
   solve() {

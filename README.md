@@ -1,3 +1,3 @@
-Sudoku solver that solves normal sudokus.
+Sudoku solver that solves normal, knight, king, miracle sudokus.
 
-//to do: knight, king, miracle sudoku solver. And better ui as well.
+By Jose Alberto Lo Cen - joalloce@gmail.com
