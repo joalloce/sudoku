@@ -23,10 +23,10 @@ const Header = () => {
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <NavLink href="/#/">Home</NavLink>
+              <NavLink href="/">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/#/about/">About</NavLink>
+              <NavLink href="/about/">About</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
