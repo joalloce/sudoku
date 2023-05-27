@@ -8,8 +8,8 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" component={Home}></Route>
-        <Route path="/about" component={About}></Route>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/about" element={<About />}></Route>
       </Routes>
     </>
   );
