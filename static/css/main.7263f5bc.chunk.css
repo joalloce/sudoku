@@ -1,0 +1,2 @@
+.grid{height:450px;width:450px;display:grid;grid-template-columns:50px 50px 50px 50px 50px 50px 50px 50px 50px;grid-template-rows:50px 50px 50px 50px 50px 50px 50px 50px 50px}.grid,.square{border:1px solid #000}.square{height:50px;width:50px;display:flex;justify-content:center;align-items:center}.inputNumber{width:20px;font-size:1.8em;border:0}.bad{background-color:red}
+/*# sourceMappingURL=main.7263f5bc.chunk.css.map */
