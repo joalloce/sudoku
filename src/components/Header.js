@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import {
   Collapse,
   Navbar,
@@ -16,15 +16,17 @@ const Header = () => {
   return (
     <>
       <Navbar color="faded" light>
-        <NavbarBrand href="/" className="mr-auto">Sudoku Solver</NavbarBrand>
+        <NavbarBrand href="/" className="mr-auto">
+          Sudoku Solver
+        </NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
-          <NavItem>
-              <NavLink href="/">Home</NavLink>
+            <NavItem>
+              <NavLink href="/#/">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/about/">About</NavLink>
+              <NavLink href="/#/about/">About</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
