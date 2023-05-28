@@ -1,6 +1,6 @@
 # Sudoku App Demo
 
-Sodoku solver that solves normal, knight, king, and "miracle" sudokus.
+Sodoku solver that solves normal, knight, king, and "miracle" sudokus: https://joalloce.github.io/sudoku/
 
 "Knight" means cells that are a knight's move away from each other cannot contain the same digit.
 
