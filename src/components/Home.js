@@ -78,6 +78,9 @@ function Home() {
           <Col xs="3" className="mt-3">
             <Container>
               <Row>
+                <a href="https://github.com/joalloce/sudoku">Code</a>
+              </Row>
+              <Row>
                 <Button
                   className="mt-1"
                   color="primary"
